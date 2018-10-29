@@ -3,7 +3,7 @@
     <div
       class="navigation-container">
       <nav class="navigation">
-        <ul>
+        <ul v-scroll-spy-active v-scroll-spy-link>
           <li class="active" data-nav="section-1"><a href="#section-1"><span>section 1</span></a></li>
           <li data-nav="section-2"><a href="#section-2"><span>section 2</span></a></li>
           <li data-nav="section-3"><a href="#section-3"><span>section 3</span></a></li>
@@ -18,33 +18,37 @@
         row
         wrap>
         <v-flex md2/>
-        <v-flex md2>
+        <v-flex
+          md2>
           <header>
             <h3>Ventures of the</h3>
             <h1>Penumbra</h1>
             <h1>Mafia</h1>
             <hr>
           </header>
-          <section id="section-1" class="story active">
-            <h2>Meet the Dons who run Silicon Valley – the PayPal Mafia.</h2>
-            <p>Despite the name, this ‘outfit’ is an entirely legit group of tech entrepreneurs - the founders and former employees of PayPal. The ‘Mafia’ have continued to work and invest together since the company’s 2002 sale to eBay. Between them, they’ve founded, funded or led some of the world’s biggest tech firms</p>
-          </section>
-          <section id="section-2" class="story">
-            <h2>Household names</h2>
-            <p>Besides PayPal, the Mafia are connected to many other notable brands. Steve Chen, Chad Hurley and Jawed Karim worked at PayPal before they founded YouTube in 2005. Yelp and LinkedIn were also started by PayPal Mafiosi.</p>
-          </section>
-          <section id="section-3" class="story">
-            <h2>Fingers in every pie</h2>
-            <p>Although most of the PayPal Mafia’s investments have stayed within their traditional territory of Silicon Valley tech, more unusual Family ventures have included private spaceflight company SpaceX, Hollywood movie Thank You for Smoking and political campaign group FWD.us.</p>
-          </section>
-          <section id="section-4" class="story">
-            <h2>Follow the money</h2>
-            <p>In addition to exec roles and individual investments in over 400 companies, several of these Bosses have started and contributed to some of Silicon Valley’s biggest investment funds, giving them a piece of the action in thousands more.</p>
-          </section>
-          <section id="section-5" class="story">
-            <h2>Capisce? Now investigate the connections for yourself</h2>
-            <p>Explore the visualisation to see the many companies the PayPal Mafia are involved in, and find out which well-known brands they helped shape. See how the Mafiosi remain connected through numerous joint ventures in Silicon Valley and beyond.</p>
-          </section>
+          <div class="sections"
+            v-scroll-spy="{data: 'section', offset: 340}">
+            <section id="section-1" class="story active">
+              <h2>Meet the Dons who run Silicon Valley – the PayPal Mafia.</h2>
+              <p>Despite the name, this ‘outfit’ is an entirely legit group of tech entrepreneurs - the founders and former employees of PayPal. The ‘Mafia’ have continued to work and invest together since the company’s 2002 sale to eBay. Between them, they’ve founded, funded or led some of the world’s biggest tech firms</p>
+            </section>
+            <section id="section-2" class="story">
+              <h2>Household names</h2>
+              <p>Besides PayPal, the Mafia are connected to many other notable brands. Steve Chen, Chad Hurley and Jawed Karim worked at PayPal before they founded YouTube in 2005. Yelp and LinkedIn were also started by PayPal Mafiosi.</p>
+            </section>
+            <section id="section-3" class="story">
+              <h2>Fingers in every pie</h2>
+              <p>Although most of the PayPal Mafia’s investments have stayed within their traditional territory of Silicon Valley tech, more unusual Family ventures have included private spaceflight company SpaceX, Hollywood movie Thank You for Smoking and political campaign group FWD.us.</p>
+            </section>
+            <section id="section-4" class="story">
+              <h2>Follow the money</h2>
+              <p>In addition to exec roles and individual investments in over 400 companies, several of these Bosses have started and contributed to some of Silicon Valley’s biggest investment funds, giving them a piece of the action in thousands more.</p>
+            </section>
+            <section id="section-5" class="story">
+              <h2>Capisce? Now investigate the connections for yourself</h2>
+              <p>Explore the visualisation to see the many companies the PayPal Mafia are involved in, and find out which well-known brands they helped shape. See how the Mafiosi remain connected through numerous joint ventures in Silicon Valley and beyond.</p>
+            </section>
+          </div>
           <footer>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptatibus sit incidunt impedit natus quibusdam ea aut quam magnam, fugit. Ipsam, vitae, cupiditate. At alias hic, sapiente, eveniet recusandae labore!
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque consequatur, repudiandae dicta animi ab blanditiis esse, laudantium necessitatibus quisquam inventore quae fugiat. Similique voluptates a quos sint impedit, dolore, aliquam.
@@ -61,7 +65,6 @@
 
 <script>
   import JQuery from 'jquery';
-  import smoothScroll from '~/plugins/smooth-scroll';
   const $ = JQuery;
 
   export default {
@@ -77,52 +80,16 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vuetify.js',
+        section: 0
       }
     },
 
-    mounted() {
-      // $('.sections').slick({
-      //   dots: true,
-      //   arrows: false,
-      //   vertical: true,
-      //   slidesToShow: 4,
-      //   dotsClass: 'nav-dots'
-      // });
-      $('.navigation a').smoothScroll({
-        offset: -240,
-        afterScroll: function(options) {
-          const $el = $(options.link).parent();
-          const $tgt = $(options.scrollTarget);
-          $el.addClass('active');
-          $el.siblings().removeClass('active');
-          $tgt.addClass('active');
-          $tgt.siblings('section').removeClass('active');
-        }
-      });
-
-      // $(window).scroll(function(){
-      //   var scrollTop = $(window).scrollTop();
-      //   var windowHeight = $(window).height();
-      //   var first = false;
-      //   $("section.story").each( function() {
-      //     var offset = $(this).offset();
-      //     if (scrollTop <= offset.top && ($(this).height() + offset.top) < (scrollTop + windowHeight) && first == false) {
-      //       var section = $(this).attr('id');
-      //       var $section = $('#' + section);
-      //       var $nav = $('.navigation li[data-nav="' + section + '"]');
-      //       console.log('.navigation li[data-nav="' + section + '"]');
-      //       $nav.addClass('active');
-      //       $nav.siblings().removeClass('active');
-      //       $section.addClass('active');
-      //       $section.siblings('section').removeClass('active');
-      //       first=true;
-      //     } else {
-      //       // $(this).removeClass("first");
-      //       first=false;
-      //     }
-      //   });
-      // });
+    watch: {
+      section: function(val) {
+        $('.sections section').removeClass('active');
+        $('.sections').children().eq(val).addClass('active');
+      }
     }
   }
 </script>
@@ -139,6 +106,9 @@
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+  }
+  p {
+    line-height: 1.5em;
   }
   header {
     text-align: center;
