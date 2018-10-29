@@ -4,11 +4,11 @@
       class="navigation-container">
       <nav class="navigation">
         <ul v-scroll-spy-active v-scroll-spy-link>
-          <li class="active" data-nav="section-1"><a href="#section-1"><span>section 1</span></a></li>
-          <li data-nav="section-2"><a href="#section-2"><span>section 2</span></a></li>
-          <li data-nav="section-3"><a href="#section-3"><span>section 3</span></a></li>
-          <li data-nav="section-4"><a href="#section-4"><span>section 4</span></a></li>
-          <li data-nav="section-5"><a href="#section-5"><span>section 5</span></a></li>
+          <li class="active" data-nav="section-1"><a><span>section 1</span></a></li>
+          <li data-nav="section-2"><a><span>section 2</span></a></li>
+          <li data-nav="section-3"><a><span>section 3</span></a></li>
+          <li data-nav="section-4"><a><span>section 4</span></a></li>
+          <li data-nav="section-5"><a><span>section 5</span></a></li>
         </ul>
       </nav>
     </div>
@@ -55,7 +55,8 @@
           </footer>
         </v-flex>
         <v-flex
-          md8>
+          md8
+          class="visualization">
           visualization
         </v-flex>
       </v-layout>
@@ -155,6 +156,5 @@
       background-color: #4c4c4c;
       border: 2px solid #4c4c4c;
     }
-
   }
 </style>
